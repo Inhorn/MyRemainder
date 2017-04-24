@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Planner</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="input_date">Date</string>
+    <string name="time">Time</string>
+    <string name="write_task">Write task</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_task">Add task!</string>
+    <string name="edit_task">Edit task</string>
+    <string name="delete_task">Delete task</string>
+    <string name="move">Move</string>
+    <string name="current">Current</string>
+    <string name="completed">Completed</string>
+    <string name="title_current">Current</string>
+    <string name="title_complete">Completed</string>
+</resources>
