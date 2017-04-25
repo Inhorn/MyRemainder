@@ -84,7 +84,7 @@ public class Current extends Fragment implements AdapterView.OnItemClickListener
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 View viewDialog = getActivity().getLayoutInflater().inflate(R.layout.activity_add_task, null, false);
-                builder.setView(viewDialog);
+                builder.setTitle("Write task").setView(viewDialog);
                 alertDialog = builder.create();
                 alertDialog.show();
 
@@ -131,14 +131,14 @@ public class Current extends Fragment implements AdapterView.OnItemClickListener
                 mDateDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        etDate.setText(String.valueOf(year + "/" + month + "/" + dayOfMonth));
+                        etDate.setText(String.valueOf(year + "/" +getDD(month + 1) + "/" + getDD(dayOfMonth)));
                     }
                 }, myYear, myMonth, myDay);
 
                 mTimeDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        etTime.setText(hourOfDay + ":" + minute);
+                        etTime.setText(getDD(hourOfDay) + ":" + getDD(minute));
                     }
                 }, myHour, myMinute, true);
             }
@@ -242,7 +242,7 @@ public class Current extends Fragment implements AdapterView.OnItemClickListener
         final DatePickerDialog myEditDateDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                etDateEdit.setText(String.valueOf(year + "/" + month + "/" + dayOfMonth));
+                etDateEdit.setText(String.valueOf(year + "/" + getDD(month + 1) + "/" + dayOfMonth));
             }
         }, myYear, myMonth, myDay);
 
@@ -275,8 +275,11 @@ public class Current extends Fragment implements AdapterView.OnItemClickListener
                         etTimeEdit.getText().toString(), getString(R.string.current));
                 editTask.setId(tasks.get((int) id));
                 database.editTask(editTask);
-                alertDialog.dismiss();
+                tasks.remove(tasks.get((int) id));
+                tasks.add(editTask);
                 adapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+
             }
         });
 
@@ -296,4 +299,7 @@ public class Current extends Fragment implements AdapterView.OnItemClickListener
         alertDialog.show();
     }
 
+    private String getDD(int num) {
+        return num > 9 ? "" + num : "0" + num;
+    }
 }

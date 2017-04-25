@@ -14,4 +14,5 @@
     <string name="completed">Completed</string>
     <string name="title_current">Current</string>
     <string name="title_complete">Completed</string>
+    <string name="hint">task_text</string>
 </resources>
