@@ -1,13 +1,12 @@
 package babiy.planner;
 
 
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import babiy.planner.fragment.Completed;
-import babiy.planner.fragment.Current;
+import babiy.planner.fragment.Fragment_Task_Completed;
+import babiy.planner.fragment.Fragment_Task_Current;
 
 
 public class FragmentAdapterClass extends FragmentStatePagerAdapter {
@@ -26,12 +25,12 @@ public class FragmentAdapterClass extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                Current currentTab = new Current();
-                return currentTab;
+                Fragment_Task_Current fragmentTaskCurrentTab = new Fragment_Task_Current();
+                return fragmentTaskCurrentTab;
 
             case 1:
-                Completed completedTab = new Completed();
-                return completedTab;
+                Fragment_Task_Completed fragmentTaskCompletedTab = new Fragment_Task_Completed();
+                return fragmentTaskCompletedTab;
 
             default:
                 return null;

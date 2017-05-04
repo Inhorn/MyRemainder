@@ -4,10 +4,10 @@
 
     <item android:title="@string/delete_task"
         android:id="@+id/menuDelete"
-        android:icon="@android:drawable/ic_input_delete"
+        android:icon="@drawable/ic_delete_trash"
         app:showAsAction="ifRoom"/>
     <item android:title="@string/move"
         android:id="@+id/menuMove"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_action_move"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -24,18 +24,19 @@ import babiy.planner.TaskDataBase;
 import babiy.planner.model.MessageEvent;
 
 
-public class Completed extends Fragment {
+public class Fragment_Task_Completed extends Fragment {
 
     ListView lvList;
-    static ArrayList<Task> tasks;
-    static MyAdapter adapter;
+    ArrayList<Task> tasks;
+    MyAdapter adapter;
     ArrayList<Task> taskChecked;
     TaskDataBase database;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.completed, container, false);
+        View v = inflater.inflate(R.layout.fragment_completed, container, false);
 
         database = new TaskDataBase(getActivity());
 
@@ -81,10 +82,9 @@ public class Completed extends Fragment {
                         for (Task lt : taskChecked) {
                             lt.setStatus(getString(R.string.current));
                             database.editTask(lt);
-                            tasks.remove(lt);
                         }
                         adapter.notifyDataSetChanged();
-                        //EventBus.getDefault().post(new MessageEvent(true));
+                        EventBus.getDefault().post(new MessageEvent(true));
                 }
 
                 mode.finish();
@@ -101,10 +101,10 @@ public class Completed extends Fragment {
         return v;
     }
 
-   /* @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if(event.isUpdate()) {
-            tasks = database.getAllTasks(getString(R.string.current));
+            tasks = database.getAllTasks(getString(R.string.completed));
             adapter = new MyAdapter(getActivity(), tasks);
             lvList.setAdapter(adapter);
         }
@@ -120,6 +120,5 @@ public class Completed extends Fragment {
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
-    }*/
-
+    }
 }

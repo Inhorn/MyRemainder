@@ -36,6 +36,7 @@ public class AlarmReceiver extends BroadcastReceiver{
                     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
                             notificationIntent, i);
                     Notification n = new Notification.Builder(context)
+                            .setVibrate(new long[]{1000, 1000})
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle("Reminder")
                             .setContentText(ts.getTask())

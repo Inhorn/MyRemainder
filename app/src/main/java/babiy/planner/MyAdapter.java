@@ -10,13 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyAdapter extends ArrayAdapter<Task> {
 
     ArrayList<Task> taskList;
     Context context;
     private LayoutInflater myInflater;
+    private boolean flag;
 
     public MyAdapter(Context context, ArrayList<Task> tasks) {
         super(context, 0, tasks);
@@ -35,7 +35,7 @@ public class MyAdapter extends ArrayAdapter<Task> {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder vh;
         if (convertView == null) {
-            View view = myInflater.inflate(R.layout.item, parent, false);
+            View view = myInflater.inflate(R.layout.list_item_task, parent, false);
             vh = ViewHolder.create((LinearLayout) view);
             view.setTag(vh);
         } else {
@@ -46,6 +46,7 @@ public class MyAdapter extends ArrayAdapter<Task> {
 
         vh.textViewTask.setText(item.getTask());
         vh.textViewDate.setText(item.getDate()+ "\n" + item.getTime());
+
         return vh.rootView;
     }
 
@@ -54,21 +55,21 @@ public class MyAdapter extends ArrayAdapter<Task> {
         public final TextView textViewDate;
         public final TextView textViewTask;
 
+
         private ViewHolder(LinearLayout rootView, TextView textViewDate, TextView textViewTask) {
             this.rootView = rootView;
             this.textViewDate = textViewDate;
             this.textViewTask = textViewTask;
+
         }
 
         public static ViewHolder create(LinearLayout rootView) {
             TextView tvDate = (TextView) rootView.findViewById(R.id.tvDate);
             TextView tvTask = (TextView) rootView.findViewById(R.id.tvTask);
-
             return new ViewHolder(rootView, tvDate, tvTask);
         }
-
-
     }
+
 
 }
 

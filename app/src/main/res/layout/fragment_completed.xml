@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="babiy.planner.fragment.Completed">
+    tools:context="babiy.planner.fragment.Fragment_Task_Completed">
 
     <ListView
         android:layout_marginTop="100dp"
