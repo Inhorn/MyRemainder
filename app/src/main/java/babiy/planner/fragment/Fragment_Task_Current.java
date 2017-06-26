@@ -3,8 +3,10 @@ package babiy.planner.fragment;
 import babiy.planner.model.MessageEvent;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -60,7 +62,7 @@ public class Fragment_Task_Current extends Fragment implements AdapterView.OnIte
     EditText etDate;
     EditText etTime;
     EditText etTask;
-
+    Vibrator vibrator;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
 
@@ -74,6 +76,8 @@ public class Fragment_Task_Current extends Fragment implements AdapterView.OnIte
         myMinute = calendar.get(Calendar.MINUTE);
 
         fabAdd = (FloatingActionButton) v.findViewById(R.id.fabAdd);
+        vibrator = (Vibrator) this.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +85,7 @@ public class Fragment_Task_Current extends Fragment implements AdapterView.OnIte
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 View viewDialog = getActivity().getLayoutInflater().inflate(R.layout.activity_add_task, null, false);
                 builder.setTitle("Write task").setView(viewDialog);
+                vibrator.vibrate(50);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
